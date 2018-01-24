@@ -19,12 +19,10 @@ namespace BangazonApi.Models
 
         [Required]
         [DataType(DataType.Date)]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime Start { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime End { get; set; }
 
         //Defining One-to-Many relationship using convention 4 definied at

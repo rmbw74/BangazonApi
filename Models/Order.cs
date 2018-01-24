@@ -12,7 +12,6 @@ namespace BangazonApi.Models
 
         [Required]
         [DataType(DataType.Date)]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime Time { get; set; }
 
         //Defining these foreign key explicitly allows the one-to-many relationship in the customer

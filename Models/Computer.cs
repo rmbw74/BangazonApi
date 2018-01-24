@@ -13,12 +13,10 @@ namespace BangazonApi.Models
 
         [Required]
         [DataType(DataType.Date)]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime Purchased { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime Decomissioned { get; set; }
 
         [Required]
