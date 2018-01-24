@@ -1,3 +1,4 @@
+//Author: Max Wolf
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -5,23 +6,23 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BangazonApi.Models
 {
-    public class ProductOrders
+    public class EmployeeTraining
     {
         [Key]
         public int Id { get; set; }
 
 
         //Foreign Key
-        public int ProductId { get; set; }
+        public int EmployeeId { get; set; }
         //Navigation Property
-        public Products Products { get; set; }
+        public Employee Employee { get; set; }
 
 
         //Foreign Key
-        public int OrderId { get; set; }
+        public int TrainingId { get; set; }
 
         //Navigation Property
-        public Orders Orders { get; set; }
+        public Training Training { get; set; }
 
     }
 }
