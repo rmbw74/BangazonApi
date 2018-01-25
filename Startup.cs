@@ -26,8 +26,12 @@ namespace BangazonApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            var connection = "Filename=/Users/camiller/workspace/Bangazon/BangazonApi/BangazonApi.db";
+
+            var path = System.Environment.GetEnvironmentVariable("BANGAZON");
+
+            var connection = $"Filename={path}";
             Console.WriteLine($"connection = {connection}");
+
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(connection));
         }
 
