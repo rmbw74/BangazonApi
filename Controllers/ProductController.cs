@@ -24,6 +24,7 @@ namespace BangazonApi.Controllers
         public IActionResult Get()
         {
             var products = _context.Product.ToList();
+
             if (products == null)
             {
                 return NotFound();
