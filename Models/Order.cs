@@ -12,7 +12,6 @@ namespace BangazonApi.Models
 
         [Required]
         [DataType(DataType.Date)]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime Time { get; set; }
 
         //Defining these foreign key explicitly allows the one-to-many relationship in the customer
@@ -32,7 +31,7 @@ namespace BangazonApi.Models
 
         //Defining One-to-Many relationship using convention 4 definied at
         //http://www.entityframeworktutorial.net/code-first/configure-one-to-many-relationship-in-code-first.aspx
-        public ICollection<ProductOrders> ProductOrders { get; set; }
+        public ICollection<ProductOrder> ProductOrders { get; set; }
 
     }
 }
