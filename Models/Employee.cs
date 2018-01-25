@@ -1,12 +1,14 @@
-//Author: StormyHares
+//Author : Chris Miller
+
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BangazonApi.Models
 {
-    public class Customer
+    public class Employee
     {
         [Key]
         public int Id { get; set; }
@@ -14,16 +16,21 @@ namespace BangazonApi.Models
         [Required]
         [StringLength(25)]
         public string FirstName { get; set; }
+
         [Required]
         [StringLength(25)]
         public string LastName { get; set; }
 
         [Required]
-        [DataType(DataType.Date)]
-        public DateTime LastActive { get; set; }
+        public int IsSupervisor { get; set; }
 
-        //Defining One-to-Many relationship using convention 4 definied at
-        //http://www.entityframeworktutorial.net/code-first/configure-one-to-many-relationship-in-code-first.aspx
-        public ICollection<Product> Product { get; set; }
+        //foreign key
+        public int DepartmentId { get; set; }
+        //navigation property
+        public Department Department { get; set; }
+
+        public ICollection<EmployeeTraining> EmployeeTraining { get; set; }
+        public ICollection<ComputerEmployee> ComputerEmployee { get; set; }
+
     }
 }
