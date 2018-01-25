@@ -11,7 +11,7 @@ using System;
 namespace api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180125000002_InitialDBCreation")]
+    [Migration("20180125024402_InitialDBCreation")]
     partial class InitialDBCreation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -198,7 +198,7 @@ namespace api.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("CustomerId");
+                    b.Property<int>("CustomerId");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -213,8 +213,6 @@ namespace api.Migrations
                     b.Property<int>("ProductTypeId");
 
                     b.Property<int>("Quantity");
-
-                    b.Property<int>("SellerId");
 
                     b.HasKey("Id");
 
@@ -345,7 +343,8 @@ namespace api.Migrations
                 {
                     b.HasOne("BangazonApi.Models.Customer", "Customer")
                         .WithMany("Product")
-                        .HasForeignKey("CustomerId");
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("BangazonApi.Models.ProductType", "ProductType")
                         .WithMany("Product")

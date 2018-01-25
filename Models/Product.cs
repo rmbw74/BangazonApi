@@ -33,7 +33,8 @@ namespace BangazonApi.Models
 
 
         //Foreign Key
-        public int SellerId { get ; set; }
+        [Display(Name = "SellerId")]
+        public int CustomerId { get ; set; }
 
         //Navigation Property
         public Customer Customer { get ; set; }

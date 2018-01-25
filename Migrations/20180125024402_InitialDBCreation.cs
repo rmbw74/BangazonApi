@@ -149,13 +149,12 @@ namespace api.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    CustomerId = table.Column<int>(nullable: true),
+                    CustomerId = table.Column<int>(nullable: false),
                     Description = table.Column<string>(maxLength: 255, nullable: false),
                     Name = table.Column<string>(maxLength: 55, nullable: false),
                     Price = table.Column<int>(nullable: false),
                     ProductTypeId = table.Column<int>(nullable: false),
-                    Quantity = table.Column<int>(nullable: false),
-                    SellerId = table.Column<int>(nullable: false)
+                    Quantity = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -165,7 +164,7 @@ namespace api.Migrations
                         column: x => x.CustomerId,
                         principalTable: "Customer",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Product_ProductType_ProductTypeId",
                         column: x => x.ProductTypeId,
