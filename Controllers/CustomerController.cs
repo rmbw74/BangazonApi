@@ -119,5 +119,12 @@ namespace BangazonApi.Controllers
             return new StatusCodeResult(StatusCodes.Status204NoContent);
         }
 
+
+        //customer exists check method
+        private bool CustomerExists(int Id)
+        {
+            return _context.Customer.Any(g => g.Id == Id);
+        }
+
     }
 }
