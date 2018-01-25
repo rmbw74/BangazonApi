@@ -31,7 +31,7 @@ namespace BangazonApi.Models
 
         //Defining One-to-Many relationship using convention 4 definied at
         //http://www.entityframeworktutorial.net/code-first/configure-one-to-many-relationship-in-code-first.aspx
-        public ICollection<ProductOrders> ProductOrders { get; set; }
+        public ICollection<ProductOrder> ProductOrders { get; set; }
 
     }
 }
