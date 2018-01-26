@@ -13,7 +13,6 @@ namespace BangazonApi.Models
         public int Id { get; set; }
 
         [Required]
-        [StringLength(55)]
         public int AccountNumber { get; set; }
 
         //foreign key
