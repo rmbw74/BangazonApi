@@ -133,16 +133,14 @@ namespace api.Migrations
                     b.ToTable("EmployeeTraining");
                 });
 
-            modelBuilder.Entity("BangazonApi.Models.Order", b =>
+            modelBuilder.Entity("BangazonApi.Models.Orders", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("CustomerId");
 
-                    b.Property<int?>("PaymentId");
-
-                    b.Property<int>("PaymentTypeId");
+                    b.Property<int>("PaymentId");
 
                     b.Property<DateTime>("Time");
 
@@ -152,9 +150,7 @@ namespace api.Migrations
 
                     b.HasIndex("PaymentId");
 
-                    b.HasIndex("PaymentTypeId");
-
-                    b.ToTable("Order");
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("BangazonApi.Models.Payment", b =>
@@ -162,8 +158,7 @@ namespace api.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("AccountNumber")
-                        .HasMaxLength(55);
+                    b.Property<int>("AccountNumber");
 
                     b.Property<int>("CustomerId");
 
@@ -229,11 +224,13 @@ namespace api.Migrations
 
                     b.Property<int>("OrderId");
 
+                    b.Property<int?>("OrdersId");
+
                     b.Property<int>("ProductId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderId");
+                    b.HasIndex("OrdersId");
 
                     b.HasIndex("ProductId");
 
@@ -308,20 +305,16 @@ namespace api.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("BangazonApi.Models.Order", b =>
+            modelBuilder.Entity("BangazonApi.Models.Orders", b =>
                 {
                     b.HasOne("BangazonApi.Models.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("BangazonApi.Models.Payment")
-                        .WithMany("Order")
-                        .HasForeignKey("PaymentId");
-
-                    b.HasOne("BangazonApi.Models.PaymentType", "PaymentType")
-                        .WithMany()
-                        .HasForeignKey("PaymentTypeId")
+                    b.HasOne("BangazonApi.Models.Payment", "Payment")
+                        .WithMany("Orders")
+                        .HasForeignKey("PaymentId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -353,10 +346,9 @@ namespace api.Migrations
 
             modelBuilder.Entity("BangazonApi.Models.ProductOrder", b =>
                 {
-                    b.HasOne("BangazonApi.Models.Order", "Order")
+                    b.HasOne("BangazonApi.Models.Orders", "Orders")
                         .WithMany("ProductOrders")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("OrdersId");
 
                     b.HasOne("BangazonApi.Models.Product", "Product")
                         .WithMany("ProductOrder")

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace api.Migrations
 {
-    public partial class InitialDBCreation : Migration
+    public partial class InitialThree : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -122,7 +122,7 @@ namespace api.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    AccountNumber = table.Column<int>(maxLength: 55, nullable: false),
+                    AccountNumber = table.Column<int>(nullable: false),
                     CustomerId = table.Column<int>(nullable: false),
                     PaymentTypeId = table.Column<int>(nullable: false)
                 },
@@ -226,35 +226,28 @@ namespace api.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Order",
+                name: "Orders",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     CustomerId = table.Column<int>(nullable: false),
-                    PaymentId = table.Column<int>(nullable: true),
-                    PaymentTypeId = table.Column<int>(nullable: false),
+                    PaymentId = table.Column<int>(nullable: false),
                     Time = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Order", x => x.Id);
+                    table.PrimaryKey("PK_Orders", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Order_Customer_CustomerId",
+                        name: "FK_Orders_Customer_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Customer",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Order_Payment_PaymentId",
+                        name: "FK_Orders_Payment_PaymentId",
                         column: x => x.PaymentId,
                         principalTable: "Payment",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Order_PaymentType_PaymentTypeId",
-                        column: x => x.PaymentTypeId,
-                        principalTable: "PaymentType",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -266,17 +259,18 @@ namespace api.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     OrderId = table.Column<int>(nullable: false),
+                    OrdersId = table.Column<int>(nullable: true),
                     ProductId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProductOrder", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProductOrder_Order_OrderId",
-                        column: x => x.OrderId,
-                        principalTable: "Order",
+                        name: "FK_ProductOrder_Orders_OrdersId",
+                        column: x => x.OrdersId,
+                        principalTable: "Orders",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ProductOrder_Product_ProductId",
                         column: x => x.ProductId,
@@ -311,19 +305,14 @@ namespace api.Migrations
                 column: "TrainingId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Order_CustomerId",
-                table: "Order",
+                name: "IX_Orders_CustomerId",
+                table: "Orders",
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Order_PaymentId",
-                table: "Order",
+                name: "IX_Orders_PaymentId",
+                table: "Orders",
                 column: "PaymentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Order_PaymentTypeId",
-                table: "Order",
-                column: "PaymentTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Payment_CustomerId",
@@ -346,9 +335,9 @@ namespace api.Migrations
                 column: "ProductTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductOrder_OrderId",
+                name: "IX_ProductOrder_OrdersId",
                 table: "ProductOrder",
-                column: "OrderId");
+                column: "OrdersId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductOrder_ProductId",
@@ -377,7 +366,7 @@ namespace api.Migrations
                 name: "Training");
 
             migrationBuilder.DropTable(
-                name: "Order");
+                name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "Product");

@@ -26,7 +26,7 @@ namespace BangazonApi.Models
         public PaymentType PaymentType { get; set; }
 
         //reference to relationship
-        public ICollection<Order> Order { get; set; }
+        public ICollection<Orders> Orders { get; set; }
 
     }
 }

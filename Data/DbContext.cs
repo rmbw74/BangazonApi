@@ -23,7 +23,7 @@ namespace BangazonApi.Data
         public DbSet<Department> Department { get; set; }
         public DbSet<Employee> Employee { get; set; }
         public DbSet<EmployeeTraining> EmployeeTraining { get; set; }
-        public DbSet<Order> Order { get; set; }
+        public DbSet<Orders> Orders { get; set; }
         public DbSet<Payment> Payment { get; set; }
         public DbSet<PaymentType> PaymentType { get; set; }
         public DbSet<Product> Product { get; set; }
