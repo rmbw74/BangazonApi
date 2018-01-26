@@ -11,11 +11,11 @@ using BangazonApi.Models;
 namespace BangazonApi.Controllers
 {
     [Route("api/[controller]")]
-    public class OrderController : Controller
+    public class OrdersController : Controller
     {
         private ApplicationDbContext _context;
         // Constructor method to create an instance of context to communicate with our database.
-        public OrderController(ApplicationDbContext ctx)
+        public OrdersController(ApplicationDbContext ctx)
         {
             _context = ctx;
         }
@@ -23,7 +23,7 @@ namespace BangazonApi.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var order = _context.Order.ToList();
+            var order = _context.Orders.ToList();
             if (order == null)
             {
                 return NotFound();
@@ -42,7 +42,7 @@ namespace BangazonApi.Controllers
 
             try
             {
-                Order order = _context.Order.Single(g => g.Id == id);
+                Orders order = _context.Orders.Single(g => g.Id == id);
 
                 if (order == null)
                 {
@@ -59,14 +59,14 @@ namespace BangazonApi.Controllers
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody]Order order)
+        public IActionResult Post([FromBody]Orders order)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Order.Add(order);
+            _context.Orders.Add(order);
 
             try
             {
@@ -88,7 +88,7 @@ namespace BangazonApi.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]Order order)
+        public IActionResult Put(int id, [FromBody]Orders order)
         {
             if (!ModelState.IsValid)
             {
@@ -99,7 +99,7 @@ namespace BangazonApi.Controllers
             {
                 return BadRequest();
             }
-            _context.Order.Update(order);
+            _context.Orders.Update(order);
             try
             {
                 _context.SaveChanges();
@@ -123,20 +123,20 @@ namespace BangazonApi.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            Order order = _context.Order.Single(g => g.Id == id);
+            Orders order = _context.Orders.Single(g => g.Id == id);
 
             if (order == null)
             {
                 return NotFound();
             }
-            _context.Order.Remove(order);
+            _context.Orders.Remove(order);
             _context.SaveChanges();
             return Ok(order);
         }
 
         private bool OrderExists(int OrderId)
         {
-            return _context.Order.Any(g => g.Id == OrderId);
+            return _context.Orders.Any(g => g.Id == OrderId);
         }
 
     }

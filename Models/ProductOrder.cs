@@ -22,7 +22,7 @@ namespace BangazonApi.Models
         public int OrderId { get; set; }
 
         //Navigation Property
-        public Order Order { get; set; }
+        public Orders Orders { get; set; }
 
     }
 }

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BangazonApi.Models
 {
-    public class Order
+    public class Orders
     {
         [Key]
         public int Id { get; set; }
@@ -22,12 +22,11 @@ namespace BangazonApi.Models
         //Navigation Property
         public Customer Customer { get ; set; }
 
-
         //Foreign Key
-        public int PaymentTypeId { get ; set; }
+        public int PaymentId { get ; set; }
 
         //Navigation Property
-        public PaymentType PaymentType { get ; set; }
+        public Payment Payment { get ; set; }
 
         //Defining One-to-Many relationship using convention 4 definied at
         //http://www.entityframeworktutorial.net/code-first/configure-one-to-many-relationship-in-code-first.aspx
