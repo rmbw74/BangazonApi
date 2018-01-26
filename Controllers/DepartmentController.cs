@@ -87,7 +87,7 @@ namespace BangazonApi.Controllers
             }
             return CreatedAtRoute("GetSingleDepartment", new { id = department.Id }, department);
         }
-        //This method will change and existing item in the database at the id at the end of the url when passed a vaid JSON object
+        //This method will change an existing item in the database at the id at the end of the url when passed a vaid JSON object
         // PUT api/Department/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]Department department)
