@@ -34,16 +34,23 @@ namespace BangazonApi.Controllers
                 //else return all customers
                 return Ok(customers);
 
-            } else //if the bool false is passed
+            } else
                 {
-                if(active == false){
+                if(active == false) //if the bool false is passed
+                {
                 var orders = _context.Orders;
                 var customers = _context.Customer;
-                //find all customers who have not acutally placed an order yet order.Time is null
+                //find all customers who have not acutally placed an order yet = order.Time is null
                 var query = (from c in customers
-                            join ord in orders on c.Id equals ord.CustomerId where ord.Time == null select c);
+                            join o in orders on c.Id equals o.CustomerId into custord
+                            from o in custord.DefaultIfEmpty()
+                            where o.Time == null
+                            select c);
                 return Ok(query);
-                } else //if the bool true is passed
+
+
+                }
+                else //if the bool true is passed
                     {
                     var orders = _context.Orders;
                     var customers = _context.Customer;
@@ -51,7 +58,9 @@ namespace BangazonApi.Controllers
                     var query = (from c in customers
                             join ord in orders on c.Id equals ord.CustomerId where ord.Time != null select c);
                 return Ok(query);
+
                 }
+
 
             }
         }
