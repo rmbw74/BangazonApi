@@ -23,7 +23,17 @@ namespace BangazonApi.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var order = _context.Orders.ToList();
+            var order = _context.Orders
+            // .Include("Products.Product")
+            .Select(o => new {
+                    Id = o.Id,
+                    Time = o.Time,
+                    CustomerId = o.CustomerId,
+                    PaymentId = o.PaymentId,
+                    Products = o.Products
+                        .Select(p => p.Product)
+                })
+            .ToList();
             if (order == null)
             {
                 return NotFound();
