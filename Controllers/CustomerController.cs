@@ -19,16 +19,41 @@ namespace BangazonApi.Controllers
         {
             _context = ctx;
         }
-
+        //this action will get customers
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get(bool? active)
         {
+            //if no bool was passed, return all customers
+            if(active == null){
             var customers = _context.Customer.ToList();
-            if (customers == null)
-            {
+                //if customers = null return notfound
+                if (customers == null)
+                {
                 return NotFound();
+                }
+                //else return all customers
+                return Ok(customers);
+
+            } else //if the bool false is passed
+                {
+                if(active == false){
+                var orders = _context.Orders;
+                var customers = _context.Customer;
+                //find all customers who have not acutally placed an order yet order.Time is null
+                var query = (from c in customers
+                            join ord in orders on c.Id equals ord.CustomerId where ord.Time == null select c);
+                return Ok(query);
+                } else //if the bool true is passed
+                    {
+                    var orders = _context.Orders;
+                    var customers = _context.Customer;
+                    //find all customers who have placed an order order.Time is not null
+                    var query = (from c in customers
+                            join ord in orders on c.Id equals ord.CustomerId where ord.Time != null select c);
+                return Ok(query);
+                }
+
             }
-            return Ok(customers);
         }
 
         // GET api/Customer/5
