@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using BangazonApi.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,6 +27,12 @@ namespace BangazonApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder => builder.WithOrigins("http://bangazon.com:5000"));
+            });
+            
             services.AddMvc();
 
             var path = System.Environment.GetEnvironmentVariable("BANGAZON");
@@ -39,6 +47,8 @@ namespace BangazonApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseCors("AllowSpecificOrigin");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
