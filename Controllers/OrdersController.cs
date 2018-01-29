@@ -52,11 +52,11 @@ namespace BangazonApi.Controllers
 
             try
             {
-                Orders order = _context.Orders.Single(g => g.Id == id);
+                var order = _context.Orders.Include("Products.Product").Single(g => g.Id == id);
 
                 if (order == null)
-                {
                     return NotFound();
+                {
                 }
 
                 return Ok(order);
