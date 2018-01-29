@@ -5,11 +5,12 @@
 
 using System;
 using System.Linq;
+using BangazonApi;
 using BangazonApi.Data;
 using BangazonApi.Models;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BangazonApi
+namespace BangazonApi.Data
 {
     public static class SeedData
     {
@@ -627,27 +628,27 @@ namespace BangazonApi
                 context.SaveChanges();
             }
 
-            if (!context.Orders.Any())
+            if (!context.ProductOrder.Any())
             {
-                context.ProductOrder.Add(new ProductOrder { ProductId = 1, OrderId = 1 });
-                context.ProductOrder.Add(new ProductOrder { ProductId = 1, OrderId = 1 });
-                context.ProductOrder.Add(new ProductOrder { ProductId = 1, OrderId = 1 });
-                context.ProductOrder.Add(new ProductOrder { ProductId = 2, OrderId = 1 });
-                context.ProductOrder.Add(new ProductOrder { ProductId = 2, OrderId = 1 });
-                context.ProductOrder.Add(new ProductOrder { ProductId = 2, OrderId = 2 });
-                context.ProductOrder.Add(new ProductOrder { ProductId = 3, OrderId = 2 });
-                context.ProductOrder.Add(new ProductOrder { ProductId = 3, OrderId = 3 });
-                context.ProductOrder.Add(new ProductOrder { ProductId = 3, OrderId = 4 });
-                context.ProductOrder.Add(new ProductOrder { ProductId = 4, OrderId = 5 });
-                context.ProductOrder.Add(new ProductOrder { ProductId = 4, OrderId = 5 });
-                context.ProductOrder.Add(new ProductOrder { ProductId = 5, OrderId = 6 });
-                context.ProductOrder.Add(new ProductOrder { ProductId = 6, OrderId = 7 });
-                context.ProductOrder.Add(new ProductOrder { ProductId = 6, OrderId = 7 });
-                context.ProductOrder.Add(new ProductOrder { ProductId = 7, OrderId = 8 });
-                context.ProductOrder.Add(new ProductOrder { ProductId = 7, OrderId = 8 });
-                context.ProductOrder.Add(new ProductOrder { ProductId = 8, OrderId = 9 });
-                context.ProductOrder.Add(new ProductOrder { ProductId = 9, OrderId = 10 });
-                context.ProductOrder.Add(new ProductOrder { ProductId = 10, OrderId = 10 });
+                context.ProductOrder.Add(new ProductOrder { ProductId = 1, OrdersId = 1 });
+                context.ProductOrder.Add(new ProductOrder { ProductId = 1, OrdersId = 1 });
+                context.ProductOrder.Add(new ProductOrder { ProductId = 1, OrdersId = 1 });
+                context.ProductOrder.Add(new ProductOrder { ProductId = 2, OrdersId = 1 });
+                context.ProductOrder.Add(new ProductOrder { ProductId = 2, OrdersId = 1 });
+                context.ProductOrder.Add(new ProductOrder { ProductId = 2, OrdersId = 2 });
+                context.ProductOrder.Add(new ProductOrder { ProductId = 3, OrdersId = 2 });
+                context.ProductOrder.Add(new ProductOrder { ProductId = 3, OrdersId = 3 });
+                context.ProductOrder.Add(new ProductOrder { ProductId = 3, OrdersId = 4 });
+                context.ProductOrder.Add(new ProductOrder { ProductId = 4, OrdersId = 5 });
+                context.ProductOrder.Add(new ProductOrder { ProductId = 4, OrdersId = 5 });
+                context.ProductOrder.Add(new ProductOrder { ProductId = 5, OrdersId = 6 });
+                context.ProductOrder.Add(new ProductOrder { ProductId = 6, OrdersId = 7 });
+                context.ProductOrder.Add(new ProductOrder { ProductId = 6, OrdersId = 7 });
+                context.ProductOrder.Add(new ProductOrder { ProductId = 7, OrdersId = 8 });
+                context.ProductOrder.Add(new ProductOrder { ProductId = 7, OrdersId = 8 });
+                context.ProductOrder.Add(new ProductOrder { ProductId = 8, OrdersId = 9 });
+                context.ProductOrder.Add(new ProductOrder { ProductId = 9, OrdersId = 10 });
+                context.ProductOrder.Add(new ProductOrder { ProductId = 10, OrdersId = 10 });
                 context.SaveChanges();
             }
         }
