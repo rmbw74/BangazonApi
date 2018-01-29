@@ -19,7 +19,7 @@ namespace BangazonApi.Models
 
 
         //Foreign Key
-        public int OrderId { get; set; }
+        public int OrdersId { get; set; }
 
         //Navigation Property
         public Orders Orders { get; set; }
