@@ -22,15 +22,24 @@ namespace BangazonApi.Models
         //Navigation Property
         public Customer Customer { get ; set; }
 
+
         //Foreign Key
         public int PaymentId { get ; set; }
 
         //Navigation Property
         public Payment Payment { get ; set; }
 
+        // //Foreign Key
+        // public int ProductId { get ; set; }
+
+        // //Navigation Property
+        // public virtual ProductOrder ProductOrder { get ; set; }
+
+
+
         //Defining One-to-Many relationship using convention 4 definied at
         //http://www.entityframeworktutorial.net/code-first/configure-one-to-many-relationship-in-code-first.aspx
-        public ICollection<ProductOrder> ProductOrders { get; set; }
+        public virtual ICollection<ProductOrder> Products { get; set; }
 
     }
 }
