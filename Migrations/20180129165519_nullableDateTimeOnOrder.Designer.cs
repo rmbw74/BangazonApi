@@ -11,8 +11,8 @@ using System;
 namespace api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180126202324_InitialThree")]
-    partial class InitialThree
+    [Migration("20180129165519_nullableDateTimeOnOrder")]
+    partial class nullableDateTimeOnOrder
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -143,7 +143,7 @@ namespace api.Migrations
 
                     b.Property<int>("PaymentId");
 
-                    b.Property<DateTime>("Time");
+                    b.Property<DateTime?>("Time");
 
                     b.HasKey("Id");
 

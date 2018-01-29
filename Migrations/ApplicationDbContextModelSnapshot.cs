@@ -142,7 +142,7 @@ namespace api.Migrations
 
                     b.Property<int>("PaymentId");
 
-                    b.Property<DateTime>("Time");
+                    b.Property<DateTime?>("Time");
 
                     b.HasKey("Id");
 
