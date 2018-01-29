@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace api.Migrations
 {
-    public partial class InitialThree : Migration
+    public partial class nullableDateTimeOnOrder : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -233,7 +233,7 @@ namespace api.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     CustomerId = table.Column<int>(nullable: false),
                     PaymentId = table.Column<int>(nullable: false),
-                    Time = table.Column<DateTime>(nullable: false)
+                    Time = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
