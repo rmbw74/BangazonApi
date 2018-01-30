@@ -95,5 +95,79 @@ lastName = Customer last name
 
 lastActive = the date that the customer was last active in the system
 
+# Accessing the Product Resource
 
+The Product resource is accessed by the following url /api/product and supports the following VERBS
+
+### GET
+#### All Products
+The default URL /api/product will return a list of ALL products in the database.
+#### Single Product
+The URL /api/product/{id}  where {id} = the id number of the product, will return the details for a single product
+
+### POST
+Sending a POST request with the following object will create a NEW entry in the databse
+```{
+"name": "string",
+"description": "string",
+"price": int,
+"quantity": int,
+"customerId": int
+}
+```
+name = Product  Name
+description = Product description
+price = price of the product - NOTE - the price property is a integer with no decimal values.  10.99 would be represented by 1099
+quantity = the quantity of the product available,
+customerId - the int id of the customer that is selling the product
+### PUT
+Sending a PUT request with the following object will update an EXISTING entry in the database.
+```{
+"id": int,
+"name": "string",
+"description": "string",
+"price": int,
+"quantity": int,
+"customerId": int
+}
+```
+id = the int id of the product
+name = Product  Name
+description = Product description
+price = price of the product - NOTE - the price property is a integer with no decimal values.  10.99 would be represented by 1099
+quantity = the quantity of the product available,
+customerId - the int id of the customer that is selling the product
+
+### DELETE
+The URL /api/product/{id}  where {id} = the id number of the product, will revmove the product from the database
+
+# Accessing the ProductType Resource
+
+The ProductType resource is accessed by the following url /api/producttype and supports the following VERBS
+
+### GET
+#### All ProductTypes
+The default URL /api/producttype will return a list of ALL product types in the database.
+#### Single ProductTypes
+The URL /api/producttype/{id}  where {id} = the id number of the producttype, will return the details for a single producttype
+
+### POST
+Sending a POST request with the following object will create a NEW entry in the databse
+```{
+"description": "string",
+}
+```
+description = ProductType description
+### PUT
+Sending a PUT request with the following object will update an EXISTING entry in the database.
+```{
+"id": int,
+"description": "string",
+}
+```
+id = the int id of the producttype
+description = Product description
+
+### DELETE
+The URL /api/producttype/{id}  where {id} = the id number of the producttype, will revmove the producttype from the database (edited)
 
