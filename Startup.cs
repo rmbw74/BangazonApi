@@ -29,7 +29,6 @@ namespace BangazonApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-<<<<<<< HEAD
             services.AddMvc()
 .AddJsonOptions(
             options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
@@ -40,7 +39,6 @@ namespace BangazonApi
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
             });
-=======
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowSpecificOrigin",
@@ -48,7 +46,6 @@ namespace BangazonApi
             });
             
             services.AddMvc();
->>>>>>> 1d4ab7705cd2df9d203e97310fe699308ba02bc0
 
             var path = System.Environment.GetEnvironmentVariable("BANGAZON");
 
