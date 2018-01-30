@@ -74,7 +74,7 @@ Sending a POST request with the following object will create a NEW entry in the 
 ```
 firstName = Customer First Name
 lastName = Customer last name
-lastActive = the date that the customer was last active in the system
+lastActive = the date that the customer was last active in the system  
 ### PUT
 Sending a PUT request with the following object will update an EXISTING entry in the database.
 ```
