@@ -1,4 +1,5 @@
 //Author: StormyHares
+//Purpose: This model represents the Product resource in the database
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

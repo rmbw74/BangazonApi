@@ -1,4 +1,5 @@
 //Author: StormyHares
+//Purpose: This model defines the representation of the ProductOrder resource in the database
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

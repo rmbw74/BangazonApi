@@ -1,4 +1,5 @@
 ﻿//Author Ray Medrano
+//Purpose is to allow bangazonians access to the Department resource through the url api/department
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,6 +60,7 @@ namespace BangazonApi.Controllers
             }
         }
         //This method will post to the department table when it is passed a valid JSON object
+        //with the following format "name": <string>, "budget": <int>
         // POST api/Department
         [HttpPost]
         public IActionResult Post([FromBody]Department department)
@@ -88,7 +90,9 @@ namespace BangazonApi.Controllers
             return CreatedAtRoute("GetSingleDepartment", new { id = department.Id }, department);
         }
         //This method will change an existing item in the database at the id at the end of the url when passed a vaid JSON object
-        // PUT api/Department/5
+        //with the following format "id":<int>,"name": <string>, "budget": <int>
+        //the id property must match the id in the URL.
+        // PUT api/Department/{id}
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]Department department)
         {
