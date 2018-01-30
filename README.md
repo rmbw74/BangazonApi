@@ -20,6 +20,10 @@ please see https://swagger.io/swagger-ui/ for information
 export BANGAZON="[ABSOLUTE PATH TO DB FILE]"
 1. you must replace everything within the quotes with the absolute path to where your database file will reside. By default, the program will create the db file in the root of the project.
 
+## Setting host file to access the Bangazon API.
+By default the Bangazon Api only allows external requests from the bangazon.com domain.
+follow these steps to modify your host file in order to comply with CORS policy
+
 
 ## creating the database
 The banagazon api by default will create a seeded database with test information. If you wish to start with a completely empty database you must follow these steps. If you want to start with the default seeded database, skip to step 4
@@ -31,12 +35,54 @@ The banagazon api by default will create a seeded database with test information
 1. verify that the path you specified above in the environment variable section matches the file location
 
 ## running for the first time.
-1. from the terminal type "dotnet restore"
-1. once completed in the terminal type "dotnet run" to start up the bangazon api
+1. type "dotnet run" to start up the bangazon api
 1. wait for the program to start.
 
 ## using swagger to access the api.
-1. one the api is running in the terminal open up a browser window. 
+1. one the api is running in the terminal open up a browser window.
+1. navigate to the following url
+http://localhost:5000/swagger/
+1. you will be presented with all options for the api.
+
+## Accessing the Customer Resource
+
+The customer resource is accessed by the following url /api/customer and supports the following VERBS
+
+### GET
+#### All Customers
+The default URL /api/customer will return a list of ALL customers in the database.
+#### Single Customer
+The URL /api/customer/{id}  where {id} = the id number of the customer, will return the details for a single customer
+#### inactive customers
+The URL /api/customer/?active=false  will return a list of customers who have not placed an order.
+
+
+### POST
+Sending a POST request with the following object will create a NEW entry in the databse
+```
+{
+"firstName": <string>,
+"lastName": <string>,
+"lastActive": <string>
+}
+```
+firstName = Customer First Name
+lastName = Customer last name
+lastActive = the date that the customer was last active in the system
+### PUT
+Sending a PUT request with the following object will update an EXISTING entry in the database.
+```
+ {
+    "id": <int>,
+    "firstName": <string>,
+    "lastName": <string>,
+    "lastActive": <string>
+}
+```
+id = the customer id of the customer you wish to update
+firstName = Customer First Name
+lastName = Customer last name
+lastActive = the date that the customer was last active in the system
 
 
 
