@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace api.Migrations
 {
-    public partial class nullableDateTimeOnOrder : Migration
+    public partial class OrdersId : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,7 @@ namespace api.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Decomissioned = table.Column<DateTime>(nullable: false),
+                    Decomissioned = table.Column<DateTime>(nullable: true),
                     Purchased = table.Column<DateTime>(nullable: false),
                     Serial = table.Column<string>(maxLength: 55, nullable: false)
                 },
@@ -258,8 +258,7 @@ namespace api.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    OrderId = table.Column<int>(nullable: false),
-                    OrdersId = table.Column<int>(nullable: true),
+                    OrdersId = table.Column<int>(nullable: false),
                     ProductId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -270,7 +269,7 @@ namespace api.Migrations
                         column: x => x.OrdersId,
                         principalTable: "Orders",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ProductOrder_Product_ProductId",
                         column: x => x.ProductId,

@@ -11,8 +11,8 @@ using System;
 namespace api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180129165519_nullableDateTimeOnOrder")]
-    partial class nullableDateTimeOnOrder
+    [Migration("20180129201409_OrdersId")]
+    partial class OrdersId
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,7 +25,7 @@ namespace api.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("Decomissioned");
+                    b.Property<DateTime?>("Decomissioned");
 
                     b.Property<DateTime>("Purchased");
 
@@ -223,9 +223,7 @@ namespace api.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("OrderId");
-
-                    b.Property<int?>("OrdersId");
+                    b.Property<int>("OrdersId");
 
                     b.Property<int>("ProductId");
 
@@ -349,7 +347,8 @@ namespace api.Migrations
                 {
                     b.HasOne("BangazonApi.Models.Orders", "Orders")
                         .WithMany("ProductOrders")
-                        .HasForeignKey("OrdersId");
+                        .HasForeignKey("OrdersId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("BangazonApi.Models.Product", "Product")
                         .WithMany("ProductOrder")
