@@ -109,11 +109,11 @@ The URL /api/product/{id}  where {id} = the id number of the product, will retur
 Sending a POST request with the following object will create a NEW entry in the databse
 ```
 {
-"name": "string",
-"description": "string",
-"price": int,
-"quantity": int,
-"customerId": int
+"name": <string>,
+"description": <string>,
+"price": <int>,
+"quantity": <int>,
+"customerId": <int>
 }
 ```
 name = Product  Name
@@ -130,12 +130,12 @@ customerId - the int id of the customer that is selling the product
 Sending a PUT request with the following object will update an EXISTING entry in the database.
 ```
 {
-"id": int,
-"name": "string",
-"description": "string",
-"price": int,
-"quantity": int,
-"customerId": int
+"id": <int>,
+"name": <string>,
+"description": <string>,
+"price": <int>,
+"quantity": <int>,
+"customerId": <int>
 }
 ```
 id = the int id of the product
@@ -167,7 +167,7 @@ The URL /api/producttype/{id}  where {id} = the id number of the producttype, wi
 Sending a POST request with the following object will create a NEW entry in the databse
 ```
 {
-"description": "string",
+"description": <string>,
 }
 ```
 description = ProductType description
@@ -175,11 +175,12 @@ description = ProductType description
 Sending a PUT request with the following object will update an EXISTING entry in the database.
 ```
 {
-"id": int,
-"description": "string",
+"id": <int>,
+"description": <string>,
 }
 ```
 id = the int id of the producttype
+
 description = Product description
 
 ### DELETE
@@ -199,7 +200,7 @@ The URL /api/Department/{id}  where {id} = the id number of the Department, will
 Sending a POST request with the following object will create a NEW entry in the databse
 ```
 {
-  "name": "string",
+  "name": <string>,
   "budget": <int>
 }
 ```
@@ -208,8 +209,8 @@ name = department name
 Sending a PUT request with the following object will update an EXISTING entry in the database.
 ```
 {
-    "id": <int>
-  "name": "string",
+    "id": <int>,
+  "name": <string>,
   "budget": <int>
 }
 ```
@@ -230,7 +231,7 @@ The URL /api/training/{id} where {id} = the id number of the customer, will retu
 Sending a POST request with the following object will create a NEW entry in the database
 ```
 {
-"name": <string>
+"name": <string>,
 "capacity": <int>,
 "start": <string>,
 "end": <string>
@@ -238,8 +239,11 @@ Sending a POST request with the following object will create a NEW entry in the 
 ```
 
 name = Training program's name
+
 capacity= Employee attendee limit
+
 start = Date when the training program begins
+
 end = Date when the training program ends
 
 ### PUT
@@ -254,7 +258,9 @@ Sending a PUT request with the following object will update an EXISTING entry in
 }
 ```
 name = Training program's name
+
 capacity= Employee attendee limit
+
 start = Date when the training program begins
 
 
