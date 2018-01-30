@@ -1,4 +1,6 @@
 //Author : Chris Miller
+//Representation of Employee Table
+
 
 using System;
 using System.Collections.Generic;
@@ -29,6 +31,7 @@ namespace BangazonApi.Models
         //navigation property
         public Department Department { get; set; }
 
+        //Reference to many to many relationships via join tables
         public ICollection<EmployeeTraining> EmployeeTraining { get; set; }
         public ICollection<ComputerEmployee> ComputerEmployee { get; set; }
 
