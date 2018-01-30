@@ -185,3 +185,34 @@ description = Product description
 ### DELETE
 The URL /api/producttype/{id}  where {id} = the id number of the producttype, will revmove the producttype from the database (edited)
 
+# Accessing the Department Resource
+
+The Department resource is accessed by the following url /api/department and supports the following VERBS
+
+### GET
+#### All Department
+The default URL /api/Department will return a list of ALL departments in the database.
+#### Single Department
+The URL /api/Department/{id}  where {id} = the id number of the Department, will return the details for a single Department
+
+### POST
+Sending a POST request with the following object will create a NEW entry in the databse
+```
+{
+  "name": "string",
+  "budget": <int>
+}
+```
+name = department name
+### PUT
+Sending a PUT request with the following object will update an EXISTING entry in the database.
+```
+{
+    "id": <int>
+  "name": "string",
+  "budget": <int>
+}
+```
+id = the int id of the department
+name = department name
+budget = department budget expressed without commas or decimals i.e a budget of 85,000.00 would be 85000
