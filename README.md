@@ -374,3 +374,64 @@ firstName = employee First Name
 isSupervisor = an integer value of either 0 or 1, where 0 = not a supervisor or 1 = is a supervisor
 
 departmentId = an integer representing the id number of the department from the department resource
+
+# Accessing the Orders Resource
+The Order  resource is accessed by the following url /api/Orders and supports the following VERBS
+
+### GET
+#### All Orders
+The default URL /api/Orders will return a list of ALL orders in the database.
+
+#### Single Order
+The URL /api/Orders/{id} where {id} = the id number of the order, will return the details for a single order
+
+### POST
+Sending a POST request with the following object will create a NEW entry in the database
+```
+{
+"time": <string>,
+"customerId": <int>,
+"customer": <null>,
+"paymentId": <int>,
+"payment": <null>,
+"productOrders": <null>
+}
+```
+time = Date purchased. Can be null. String format "mm/dd/yyyy"
+
+custmoerId = Id of Customer purchasing order.
+
+customer = Foreign Key
+
+paymentId = Id of payment used
+
+payment = Foreign Key
+
+productOrders = Join Table
+
+#### PUT
+using the URL  API/Orders/{id}  Where ID = the id number of the Order you are updating
+Sending a PUT request with the following object will update an EXISTING entry in the database.
+```
+{
+        "id": <int>,
+        "time": <String>,
+        "customerId": <int>,
+        "customer": <null>,
+        "paymentId": <int>
+}
+```
+id = the int id of the order, this must match the id in the URL
+
+time = Date purchased. Can be null. String format "mm/dd/yyyy"
+
+custmoerId = Id of Customer purchasing order.
+
+customer = Foreign Key
+
+paymentId = Id of payment used
+
+
+
+### DELETE
+The URL /api/Orders/{id} where {id} = the id number of the order, will remove the order from the database
