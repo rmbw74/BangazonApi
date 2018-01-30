@@ -1,3 +1,5 @@
+//Authors : Ray Medrano , Chris Miller
+//Purpose : This controller allows bangazonians access to the customer resource
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +21,8 @@ namespace BangazonApi.Controllers
         {
             _context = ctx;
         }
-        //this action will get customers
+        //this action will get customers - the active bool is a parameter - when passed true or false it will return a list of customers that are considered inactive(false) or active(true)
+        //an inactive customer is one who has never completed an order on the order table.
         [HttpGet]
         public IActionResult Get(bool? active)
         {
@@ -40,7 +43,8 @@ namespace BangazonApi.Controllers
                 {
                 var orders = _context.Orders;
                 var customers = _context.Customer;
-                //find all customers who have not acutally placed an order yet = order.Time is null
+                //find all customers who have not placed an order on the order table, or never placed an order.
+                //placed order = Order.Time = null
                 var query =
                         from c in customers
                         where !(from o in orders where o.Time != null select o.CustomerId).Any(id => id == c.Id)
@@ -66,7 +70,8 @@ namespace BangazonApi.Controllers
             }
         }
 
-        // GET api/Customer/5
+        // GET api/Customer/{id}
+        // this method will return the details of a single customer when the customer Id is appeneded to the URL
         [HttpGet("{id}", Name = "GetSingleCustomer")]
         public IActionResult Get(int id)
         {
@@ -92,7 +97,9 @@ namespace BangazonApi.Controllers
             }
         }
 
-        // POST api/values
+        // POST api/customer
+        // This method with post a new customer to the database
+        // with the following format "firstName": <string>, "lastName": <string>,"lastActive": <string>
         [HttpPost]
         public IActionResult Post([FromBody]Customer Customer)
         {
@@ -121,7 +128,10 @@ namespace BangazonApi.Controllers
             return CreatedAtRoute("GetSingleCustomer", new { id = Customer.Id }, Customer);
         }
 
-        // PUT api/values/5
+        // PUT api/customer/{id}
+        //This method will update an existing customer in the database where the id on the url = customer id
+        //with the following format, the id must match the id in the url
+        //"id": int,  "firstName": <string>, "lastName": <string>,"lastActive": <string>
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]Customer Customer)
         {
