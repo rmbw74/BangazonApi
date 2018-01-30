@@ -1,4 +1,5 @@
 //Author: Ray
+// Purpose: this model defines the representation of the PaymentType resource in the database
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

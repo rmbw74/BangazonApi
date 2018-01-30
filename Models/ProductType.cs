@@ -1,4 +1,5 @@
 //Author: StormyHares
+// This model defines the representaion of the PoductType resource in the database
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

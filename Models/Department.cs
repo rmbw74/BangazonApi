@@ -1,3 +1,5 @@
+//author Ray Medrano
+//purpose this model defines the properties on the department resource in the database
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
