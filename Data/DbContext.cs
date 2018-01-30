@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿// Author : Chris Miller
+
+
+using Microsoft.EntityFrameworkCore;
 using BangazonApi.Models;
 
 namespace BangazonApi.Data
@@ -10,11 +13,7 @@ namespace BangazonApi.Data
         { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            // modelBuilder.Entity<Order>()
-            //     .Property(b => b.DateCreated)
-            //     .HasDefaultValueSql("strftime('%Y-%m-%d %H:%M:%S')");
-        }
+        { }
 
 
         public DbSet<Computer> Computer { get; set; }

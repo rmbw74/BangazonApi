@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Author : Chris Miller
+// Expose the ProductType table to api access
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,10 +24,12 @@ namespace BangazonApi.Controllers
             _context = ctx;
         }
 
+        // Use GET request to return a list of all producTypes
+        // GET api/producttypes/
         [HttpGet]
         public IActionResult Get()
         {
-            var producttypes = _context.ProductType.ToList();
+            var producttypes = _context.ProductType.Select(pt => new {Id = pt.Id, Description = pt.Description}).ToList();
             if (producttypes == null)
             {
                 return NotFound();
@@ -31,6 +37,8 @@ namespace BangazonApi.Controllers
             return Ok(producttypes);
         }
 
+        
+        // Use GET request to return a single all producTypes by passing in the id via route paramaters
         // GET api/productType/5
         [HttpGet("{id}", Name = "GetSingleProductType")]
         public IActionResult Get(int id)
@@ -42,7 +50,7 @@ namespace BangazonApi.Controllers
 
             try
             {
-                ProductType producttype = _context.ProductType.Single(g => g.Id == id);
+                var producttype = _context.ProductType.Select(pt => new {Id = pt.Id, Description = pt.Description}).Single(g => g.Id == id);
 
                 if (producttype == null)
                 {
@@ -57,7 +65,9 @@ namespace BangazonApi.Controllers
             }
         }
 
-        // POST api/values
+        // Use POST request to add product to the database using this format
+        // {"description": "string"}
+        // POST api/product
         [HttpPost]
         public IActionResult Post([FromBody]ProductType producttype)
         {
@@ -85,8 +95,9 @@ namespace BangazonApi.Controllers
             }
             return CreatedAtRoute("GetSingleProductType", new { id = producttype.Id }, producttype);
         }
-
-        // PUT api/values/5
+        // Use PUT method to edit producttypes in the database using this format
+        // {"id": int, description": "string"}
+        // PUT api/values/id
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]ProductType producttype)
         {
@@ -119,7 +130,8 @@ namespace BangazonApi.Controllers
             return new StatusCodeResult(StatusCodes.Status204NoContent);
         }
 
-        // DELETE api/values/5
+        // Remove an entry from the ProductType Table by passing the id in the rout paramaters
+        // DELETE api/product/{id}
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
