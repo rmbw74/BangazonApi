@@ -107,7 +107,8 @@ The URL /api/product/{id}  where {id} = the id number of the product, will retur
 
 ### POST
 Sending a POST request with the following object will create a NEW entry in the databse
-```{
+```
+{
 "name": "string",
 "description": "string",
 "price": int,
@@ -116,13 +117,19 @@ Sending a POST request with the following object will create a NEW entry in the 
 }
 ```
 name = Product  Name
+
 description = Product description
+
 price = price of the product - NOTE - the price property is a integer with no decimal values.  10.99 would be represented by 1099
+
 quantity = the quantity of the product available,
+
 customerId - the int id of the customer that is selling the product
+
 ### PUT
 Sending a PUT request with the following object will update an EXISTING entry in the database.
-```{
+```
+{
 "id": int,
 "name": "string",
 "description": "string",
@@ -132,10 +139,15 @@ Sending a PUT request with the following object will update an EXISTING entry in
 }
 ```
 id = the int id of the product
+
 name = Product  Name
+
 description = Product description
+
 price = price of the product - NOTE - the price property is a integer with no decimal values.  10.99 would be represented by 1099
+
 quantity = the quantity of the product available,
+
 customerId - the int id of the customer that is selling the product
 
 ### DELETE
@@ -153,14 +165,16 @@ The URL /api/producttype/{id}  where {id} = the id number of the producttype, wi
 
 ### POST
 Sending a POST request with the following object will create a NEW entry in the databse
-```{
+```
+{
 "description": "string",
 }
 ```
 description = ProductType description
 ### PUT
 Sending a PUT request with the following object will update an EXISTING entry in the database.
-```{
+```
+{
 "id": int,
 "description": "string",
 }
