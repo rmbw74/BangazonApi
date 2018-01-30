@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Author : Chris Miller
+// Expose the product table to api acess though api/product
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,10 +23,19 @@ namespace BangazonApi.Controllers
             _context = ctx;
         }
 
+        // Use GET request to return a list of all products - Include Owner information
+        // GET api/product/
         [HttpGet]
         public IActionResult Get()
         {
-            var products = _context.Product.ToList();
+            var products = _context.Product.Select(p => 
+                new {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Description = p.Description,
+                    Quantity = p.Quantity,
+                    Price = p.Price,
+                    Owner = p.Customer}).ToList();
             if (products == null)
             {
                 return NotFound();
@@ -31,7 +43,8 @@ namespace BangazonApi.Controllers
             return Ok(products);
         }
 
-        // GET api/product/5
+        // Use GET request to return a single product - Include Owner information
+        // GET api/product/#
         [HttpGet("{id}", Name = "GetSingleProduct")]
         public IActionResult Get(int id)
         {
@@ -42,7 +55,14 @@ namespace BangazonApi.Controllers
 
             try
             {
-                Product product = _context.Product.Single(g => g.Id == id);
+                var product = _context.Product.Select(p => new {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Description = p.Description,
+                    Quantity = p.Quantity,
+                    Price = p.Price,
+                    Owner = p.Customer
+                }).Single(g => g.Id == id);
 
                 if (product == null)
                 {
@@ -53,11 +73,13 @@ namespace BangazonApi.Controllers
             }
             catch (System.InvalidOperationException ex)
             {
-                return NotFound();
+                return NotFound(ex);
             }
         }
 
-        // POST api/values
+        // Use POST request to add product to the database using this format
+        // { "name": "string", "description": "string", "price": int, "quantity": int, "customerId": int }
+        // POST api/product
         [HttpPost]
         public IActionResult Post([FromBody]Product product)
         {
@@ -86,6 +108,8 @@ namespace BangazonApi.Controllers
             return CreatedAtRoute("GetSingleProduct", new { id = product.Id }, product);
         }
 
+        // Edit an entry in the product table with the PUT command using the following format
+        // { "id": int, "name": "string", "description": "string", "price": int, "quantity": int, "customerId": int }
         // PUT api/values/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]Product product)
@@ -119,7 +143,8 @@ namespace BangazonApi.Controllers
             return new StatusCodeResult(StatusCodes.Status204NoContent);
         }
 
-        // DELETE api/values/5
+        // Remove an entry from the Product Table by passing the id in the rout paramaters
+        // DELETE api/product/{id}
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

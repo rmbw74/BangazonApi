@@ -1,4 +1,7 @@
-﻿
+﻿// This file was constructed by Jason Figuroa and the source code can be found here : https://github.com/spooky-oysters/bangazon
+// This will seed the database with dummy data if the tables are empty
+
+
 /*****************************************************************/
 /* If seeded data is no longer required this file can be deleted */
 /*****************************************************************/
