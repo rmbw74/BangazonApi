@@ -214,5 +214,52 @@ Sending a PUT request with the following object will update an EXISTING entry in
 }
 ```
 id = the int id of the department
+
 name = department name
+
 budget = department budget expressed without commas or decimals i.e a budget of 85,000.00 would be 85000
+
+# Accessing the Training Resource
+The customer resource is accessed by the following url /training/customer and supports the following VERBS
+### GET
+#### All Customers
+The default URL /api/training will return a list of ALL training programs in the database.
+#### Single Customer
+The URL /api/training/{id} where {id} = the id number of the customer, will return the details for a single training program
+### POST
+Sending a POST request with the following object will create a NEW entry in the database
+```
+{
+"name": <string>
+"capacity": <int>,
+"start": <string>,
+"end": <string>
+}
+```
+
+name = Training program's name
+capacity= Employee attendee limit
+start = Date when the training program begins
+end = Date when the training program ends
+
+### PUT
+Sending a PUT request with the following object will update an EXISTING entry in the database.
+```
+{
+"id": <int>,
+"name": <string>,
+"capacity": int,
+"start": <string>,
+"end" : <string>
+}
+```
+name = Training program's name
+capacity= Employee attendee limit
+start = Date when the training program begins
+
+
+### DELETE
+
+Sending a DELETE request from the URL /api/training/{id} where {id} = the id number of the customer. Send a DELETE request to the url above where the id = 6
+A 400 response code will be returned, it is not possible to delete a program that has already occurred.
+Send another request where the id corresponds to the training program POST request sent above, and see that it will return 200 indicating that it has been removed.
