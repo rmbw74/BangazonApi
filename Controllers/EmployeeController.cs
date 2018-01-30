@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Author Ray Medrano
+//Purpose is to allow bangazonians access to the employee resource through the url api/employee
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -57,8 +59,9 @@ namespace BangazonApi.Controllers
                 return NotFound();
             }
         }
-        //This method will post to the employee database when it is passed a valid JSON object
-        // POST api/values
+        //This method will post to the employee table when it is passed a valid JSON object
+        //with the following format {"firstName": <string>,"lastName": <string>,"isSupervisor": <int>,"departmentId": <int>}
+        // POST api/Employee
         [HttpPost]
         public IActionResult Post([FromBody]Employee employee)
         {
@@ -87,7 +90,10 @@ namespace BangazonApi.Controllers
             return CreatedAtRoute("GetSingleEmployee", new { id = employee.Id }, employee);
         }
 
-        // PUT api/Employee/5
+       //This method will change an existing item in the database at the id at the end of the url when passed a vaid JSON object
+        //with the following format {"id":<int>,firstName": <string>,"lastName": <string>,"isSupervisor": <int>,"departmentId": <int>}
+        //the id property must match the id in the URL.
+        // PUT api/Employee/{id}
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]Employee employee)
         {
