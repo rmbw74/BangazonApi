@@ -41,11 +41,10 @@ namespace BangazonApi.Controllers
                 var orders = _context.Orders;
                 var customers = _context.Customer;
                 //find all customers who have not acutally placed an order yet = order.Time is null
-                var query = (from c in customers
-                            join o in orders on c.Id equals o.CustomerId into custord
-                            from o in custord.DefaultIfEmpty()
-                            where o.Time == null
-                            select c);
+                var query =
+                        from c in customers
+                        where !(from o in orders where o.Time != null select o.CustomerId).Any(id => id == c.Id)
+                        select c;
                 return Ok(query);
 
 
@@ -55,8 +54,10 @@ namespace BangazonApi.Controllers
                     var orders = _context.Orders;
                     var customers = _context.Customer;
                     //find all customers who have placed an order order.Time is not null
-                    var query = (from c in customers
-                            join ord in orders on c.Id equals ord.CustomerId where ord.Time != null select c);
+                    var query =
+                        from c in customers
+                        where (from o in orders where o.Time != null select o.CustomerId).Any(id => id == c.Id)
+                        select c;
                 return Ok(query);
 
                 }
