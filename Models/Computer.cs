@@ -1,4 +1,5 @@
-//Author: Ray
+//Author: Chase Steely
+//Purpose: To create a Model for the Computer Table
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
