@@ -24,7 +24,7 @@ namespace api.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("Decomissioned");
+                    b.Property<DateTime?>("Decomissioned");
 
                     b.Property<DateTime>("Purchased");
 
@@ -222,9 +222,7 @@ namespace api.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("OrderId");
-
-                    b.Property<int?>("OrdersId");
+                    b.Property<int>("OrdersId");
 
                     b.Property<int>("ProductId");
 
@@ -348,7 +346,8 @@ namespace api.Migrations
                 {
                     b.HasOne("BangazonApi.Models.Orders", "Orders")
                         .WithMany("ProductOrders")
-                        .HasForeignKey("OrdersId");
+                        .HasForeignKey("OrdersId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("BangazonApi.Models.Product", "Product")
                         .WithMany("ProductOrder")
