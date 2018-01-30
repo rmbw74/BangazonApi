@@ -23,6 +23,12 @@ export BANGAZON="[ABSOLUTE PATH TO DB FILE]"
 ## Setting host file to access the Bangazon API.
 By default the Bangazon Api only allows external requests from the bangazon.com domain.
 follow these steps to modify your host file in order to comply with CORS policy
+1. use a text editor to open your hosts file
+    for macs you can use "sudo nano /etc/hosts" in the terminal to open the file.
+    for pc's the file is typically found @ /windows/system32/drivers/etc/hosts
+2. add bangazon.com to the file.
+3. save the file
+
 
 
 ## creating the database
@@ -44,7 +50,7 @@ The banagazon api by default will create a seeded database with test information
 http://localhost:5000/swagger/
 1. you will be presented with all options for the api.
 
-## Accessing the Customer Resource
+# Accessing the Customer Resource
 
 The customer resource is accessed by the following url /api/customer and supports the following VERBS
 
