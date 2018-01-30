@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//Author: Chase Steely and Max Wolf
+//Purpose: To allow Bangazonians to access the Orders table in the API, allowing them to GET, PUT, POST, and DELETE
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +10,6 @@ using BangazonApi.Models;
 namespace BangazonApi.Controllers
 {
     [Route("api/[controller]")]
-    
     public class OrdersController : Controller
     {
         private ApplicationDbContext _context;
@@ -20,20 +18,21 @@ namespace BangazonApi.Controllers
         {
             _context = ctx;
         }
-
+        //Gets all Orders from the API with the Products Join table attached.
+        //GET api/Orders/
         [HttpGet]
         public IActionResult Get()
         {
             var order = _context.Orders
-            // .Include("Products.Product")
-            .Select(o => new {
-                    Id = o.Id,
-                    Time = o.Time,
-                    CustomerId = o.CustomerId,
-                    PaymentId = o.PaymentId,
-                    Products = o.Products
+            .Select(o => new
+            {
+                Id = o.Id,
+                Time = o.Time,
+                CustomerId = o.CustomerId,
+                PaymentId = o.PaymentId,
+                Products = o.Products
                         .Select(p => p.Product)
-                })
+            })
             .ToList();
             if (order == null)
             {
@@ -42,7 +41,8 @@ namespace BangazonApi.Controllers
             return Ok(order);
         }
 
-        // GET api/product/5
+        //Gets a single order in the API by id with Product data attached
+        // GET api/Orders/id
         [HttpGet("{id}", Name = "GetSingleOrder")]
         public IActionResult Get(int id)
         {
@@ -68,7 +68,8 @@ namespace BangazonApi.Controllers
             }
         }
 
-        // POST api/values
+        // Allows you to post/add a order to the api
+        // POST api/Orders
         [HttpPost]
         public IActionResult Post([FromBody]Orders order)
         {
@@ -97,7 +98,8 @@ namespace BangazonApi.Controllers
             return CreatedAtRoute("GetSingleOrder", new { id = order.Id }, order);
         }
 
-        // PUT api/values/5
+        //Allows you to edit data on the Orders table for a single computer by id
+        // PUT api/Orders/id
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]Orders order)
         {
@@ -130,7 +132,8 @@ namespace BangazonApi.Controllers
             return new StatusCodeResult(StatusCodes.Status204NoContent);
         }
 
-        // DELETE api/values/5
+         //Allows you to delete a row in the Orders table for a single order by id
+        // DELETE api/Orders/id
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

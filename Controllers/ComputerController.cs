@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//Author: Chase Steely
+//Purpose: To allow Bangazonians to access Computer table in the API, allowing them to GET, PUT, POST, and DELETE
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +18,8 @@ namespace BangazonApi.Controllers
         {
             _context = ctx;
         }
-
+        //Gets all computers in the API
+        //GET api/Computer/
         [HttpGet]
         public IActionResult Get()
         {
@@ -30,8 +30,8 @@ namespace BangazonApi.Controllers
             }
             return Ok(computer);
         }
-
-        // GET api/product/5
+        //Gets a single computer in the API by id
+        // GET api/Computer/id
         [HttpGet("{id}", Name = "GetSingleComputer")]
         public IActionResult Get(int id)
         {
@@ -56,8 +56,8 @@ namespace BangazonApi.Controllers
                 return NotFound();
             }
         }
-
-        // POST api/values
+        // Allows you to post/add a computer to the api
+        // POST api/Computer
         [HttpPost]
         public IActionResult Post([FromBody]Computer computer)
         {
@@ -85,8 +85,8 @@ namespace BangazonApi.Controllers
             }
             return CreatedAtRoute("GetSingleComputer", new { id = computer.Id }, computer);
         }
-
-        // PUT api/values/5
+        //Allows you to edit data on the Computer table for a single computer by id
+        // PUT api/Computer/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]Computer computer)
         {
@@ -118,8 +118,8 @@ namespace BangazonApi.Controllers
 
             return new StatusCodeResult(StatusCodes.Status204NoContent);
         }
-
-        // DELETE api/values/5
+        //Allows you to delete a row in the Computer table for a single computer by id
+        // DELETE api/Computer/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

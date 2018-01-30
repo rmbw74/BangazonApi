@@ -1,3 +1,6 @@
+//Author: Chase Steely
+//Purpose: Model for the Orders Table
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,7 +13,6 @@ namespace BangazonApi.Models
         [Key]
         public int Id { get; set; }
 
-        
         [DataType(DataType.Date)]
         public DateTime? Time { get; set; }
 
@@ -18,24 +20,16 @@ namespace BangazonApi.Models
         //and productType models with the ICollection definined there in addition to their many-to-many relationship.
 
         //Foreign Key
-        public int CustomerId { get ; set; }
-        //Navigation Property
-        public Customer Customer { get ; set; }
+        public int CustomerId { get; set; }
 
+        //Navigation Property
+        public Customer Customer { get; set; }
 
         //Foreign Key
-        public int PaymentId { get ; set; }
+        public int PaymentId { get; set; }
 
         //Navigation Property
-        public Payment Payment { get ; set; }
-
-        // //Foreign Key
-        // public int ProductId { get ; set; }
-
-        // //Navigation Property
-        // public virtual ProductOrder ProductOrder { get ; set; }
-
-
+        public Payment Payment { get; set; }
 
         //Defining One-to-Many relationship using convention 4 definied at
         //http://www.entityframeworktutorial.net/code-first/configure-one-to-many-relationship-in-code-first.aspx
