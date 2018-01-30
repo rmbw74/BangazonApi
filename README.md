@@ -64,7 +64,7 @@ The URL /api/customer/?active=false  will return a list of customers who have no
 
 
 ### POST
-Sending a POST request with the following object will create a NEW entry in the databse
+Sending a POST request with the following object will create a NEW entry in the database
 ```
 {
 "firstName": <string>,
@@ -78,6 +78,7 @@ lastName = Customer last name
 
 lastActive = the date that the customer was last active in the system
 ### PUT
+using the URL  API/Customer/{id}  Where ID = the id number of the customer you are updating
 Sending a PUT request with the following object will update an EXISTING entry in the database.
 ```
  {
@@ -87,7 +88,7 @@ Sending a PUT request with the following object will update an EXISTING entry in
     "lastActive": <string>
 }
 ```
-id = the customer id of the customer you wish to update
+id = the customer id of the customer you wish to update, this must match the id in the URL
 
 firstName = Customer First Name
 
@@ -106,7 +107,7 @@ The default URL /api/product will return a list of ALL products in the database.
 The URL /api/product/{id}  where {id} = the id number of the product, will return the details for a single product
 
 ### POST
-Sending a POST request with the following object will create a NEW entry in the databse
+Sending a POST request with the following object will create a NEW entry in the database
 ```
 {
 "name": <string>,
@@ -164,7 +165,7 @@ The default URL /api/producttype will return a list of ALL product types in the 
 The URL /api/producttype/{id}  where {id} = the id number of the producttype, will return the details for a single producttype
 
 ### POST
-Sending a POST request with the following object will create a NEW entry in the databse
+Sending a POST request with the following object will create a NEW entry in the database
 ```
 {
 "description": <string>,
@@ -172,6 +173,7 @@ Sending a POST request with the following object will create a NEW entry in the 
 ```
 description = ProductType description
 ### PUT
+using the URL  API/Producttype/{id}  Where ID = the id number of the Product Type you are updating
 Sending a PUT request with the following object will update an EXISTING entry in the database.
 ```
 {
@@ -179,7 +181,7 @@ Sending a PUT request with the following object will update an EXISTING entry in
 "description": <string>,
 }
 ```
-id = the int id of the producttype
+id = the int id of the producttype this must match the id in the URL
 
 description = Product description
 
@@ -206,6 +208,7 @@ Sending a POST request with the following object will create a NEW entry in the 
 ```
 name = department name
 ### PUT
+using the URL  API/Department/{id}  Where ID = the id number of the Department you are updating
 Sending a PUT request with the following object will update an EXISTING entry in the database.
 ```
 {
@@ -214,7 +217,7 @@ Sending a PUT request with the following object will update an EXISTING entry in
   "budget": <int>
 }
 ```
-id = the int id of the department
+id = the int id of the department, this must match the id in the URL
 
 name = department name
 
@@ -247,6 +250,7 @@ start = Date when the training program begins
 end = Date when the training program ends
 
 ### PUT
+using the URL  API/Training/{id}  Where ID = the id number of the training program you are updating
 Sending a PUT request with the following object will update an EXISTING entry in the database.
 ```
 {
@@ -257,6 +261,8 @@ Sending a PUT request with the following object will update an EXISTING entry in
 "end" : <string>
 }
 ```
+id = the id of the training program you wish to update, this must match the id in the URL
+
 name = Training program's name
 
 capacity= Employee attendee limit
@@ -266,6 +272,105 @@ start = Date when the training program begins
 
 ### DELETE
 
-Sending a DELETE request from the URL /api/training/{id} where {id} = the id number of the customer. Send a DELETE request to the url above where the id = 6
+Sending a DELETE request from the URL /api/training/{id} where {id} = the id number of the training program. Send a DELETE request to the url above where the id = 6
 A 400 response code will be returned, it is not possible to delete a program that has already occurred.
 Send another request where the id corresponds to the training program POST request sent above, and see that it will return 200 indicating that it has been removed.
+
+# Accessing the Computer Resource
+The Computer resource is accessed by the following url /api/Computer and supports the following VERBS
+
+### GET
+#### All Computer
+The default URL /api/Computer will return a list of ALL computers in the database.
+
+#### Single Computer
+The URL /api/Computer/{id} where {id} = the id number of the computer, will return the details for a single computer
+
+### POST
+Sending a POST request with the following object will create a NEW entry in the database
+
+```
+{
+"decommissioned": <string>,
+"purchased": <string>,
+"serial": <string>
+}
+```
+decommissioned = Date computer was decommissioned. May not be applicable. String format "mm/dd/yyyy"
+
+purchased = Date computer was acquired.
+
+serial = Serial Number/String
+
+### PUT
+using the URL  API/Computer/{id}  Where ID = the id number of the computer you are updating
+Sending a PUT request with the following object will update an EXISTING entry in the database.
+```
+{
+"id": int,
+"decommissioned": <string>,
+"purchased": <string>,
+"serial": <string>
+}
+```
+id = the int id of the computer, this must match with the id in the computer object
+
+decommissioned = Date computer was decommissioned. May not be applicable. String format "mm/dd/yyyy"
+
+purchased = Date computer was acquired.
+
+serial = Serial Number/String
+
+computerEmployee = id of Employee Assigned to Computer. This is a Join table
+
+
+### DELETE
+The URL /api/Computer/{id} where {id} = the id number of the computer, will remove the computer from the database
+
+# Accessing the Employee Resource
+
+The employee resource is accessed by the following url /api/employee and supports the following VERBS
+
+### GET
+#### All Employees
+The default URL /api/employee will return a list of ALL employees in the database.
+#### Single employee
+The URL /api/employee/{id}  where {id} = the id number of the employee, will return the details for a single employee
+
+
+### POST
+Sending a POST request with the following object will create a NEW entry in the database
+```
+{
+    "firstName": <string>,
+    "lastName": <string>,
+    "isSupervisor": <int>,
+    "departmentId": <int>,
+}
+```
+firstName = Employee First Name
+
+lastName = Employee last name
+
+isSupervisor = an integer value of either 0 or 1, where 0 = not a supervisor or 1 = is a supervisor
+
+departmentId = an integer representing the id number of the department from the department resource
+### PUT
+using the URL  API/Employee/{id}  Where ID = the id number of the employee you are updating
+Sending a PUT request with the following object will update an EXISTING entry in the database.
+```
+ {
+    "id": <int>,
+    "firstName": <string>,
+    "lastName": <string>,
+    "isSupervisor": <int>,
+    "departmentId": <int>,
+}
+```
+id = the id of the employee you wish to update, this must match with the id in the URL
+
+firstName = employee First Name
+
+isSupervisor = an integer value of either 0 or 1, where 0 = not a supervisor or 1 = is a supervisor
+
+departmentId = an integer representing the id number of the department from the department resource
