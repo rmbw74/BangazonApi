@@ -53,7 +53,7 @@ namespace BangazonApi.Controllers
             }
             catch (System.InvalidOperationException ex)
             {
-                return NotFound();
+                return NotFound(ex);
             }
         }
 
