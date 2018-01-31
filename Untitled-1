@@ -1,0 +1,40 @@
+# Accessing the Product Resource
+
+The Product resource is accessed by the following url /api/product and supports the following VERBS
+
+### GET
+#### All Products
+The default URL /api/product will return a list of ALL products in the database.
+#### Single Customer
+The URL /api/product/{id}  where {id} = the id number of the product, will return the details for a single product
+
+### POST
+Sending a POST request with the following object will create a NEW entry in the databse - NOTE - the price property is a integer with no decimal values.  10.99 would be represented by 1099
+```
+{
+"name": "string",
+"description": "string",
+"price": int,
+"quantity": int,
+"customerId": int
+}
+```
+name = Customer First Name
+lastName = Customer last name
+lastActive = the date that the customer was last active in the system
+### PUT
+Sending a PUT request with the following object will update an EXISTING entry in the database.
+```
+ {
+    "id": <int>,
+    "firstName": <string>,
+    "lastName": <string>,
+    "lastActive": <string>
+}
+```
+id = the customer id of the customer you wish to update
+firstName = Customer First Name
+lastName = Customer last name
+lastActive = the date that the customer was last active in the system
+
+
