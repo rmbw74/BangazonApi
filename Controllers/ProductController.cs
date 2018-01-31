@@ -35,7 +35,8 @@ namespace BangazonApi.Controllers
                     Description = p.Description,
                     Quantity = p.Quantity,
                     Price = p.Price,
-                    Owner = p.Customer}).ToList();
+                    Owner = p.Customer,
+                    ProductType = p.ProductType}).ToList();
             if (products == null)
             {
                 return NotFound();
@@ -61,7 +62,8 @@ namespace BangazonApi.Controllers
                     Description = p.Description,
                     Quantity = p.Quantity,
                     Price = p.Price,
-                    Owner = p.Customer
+                    Owner = p.Customer,
+                    ProductType = p.ProductType
                 }).Single(g => g.Id == id);
 
                 if (product == null)

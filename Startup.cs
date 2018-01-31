@@ -42,7 +42,7 @@ namespace BangazonApi
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowSpecificOrigin",
-                    builder => builder.WithOrigins("http://bangazon.com:8080", "http://bangazon.com:5000"));
+                    builder => builder.WithOrigins("http://bangazon.com:8080", "http://bangazon.com:3000").AllowAnyMethod().AllowAnyHeader());
             });
 
             services.AddMvc();
