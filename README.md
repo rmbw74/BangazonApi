@@ -481,8 +481,44 @@ customerId = Id of Customer purchasing order.
 
 paymentTypeId = Id of payment type used
 
+### DELETE
+The URL /api/Payment/{id} where {id} = the id number of the order, will remove the order from the database
+
+# Accessing the PaymentType Resource
+The Order  resource is accessed by the following url /api/Orders and supports the following VERBS
+
+### GET
+#### All PaymentType Types
+The default URL /api/PaymentType will return a list of ALL orders in the database.
+
+#### Single PaymentType Type
+The URL /api/PaymentType/{id} where {id} = the id number of the order, will return the details for a single order
+
+### POST
+Sending a POST request with the following object will create a NEW entry in the database
+```
+{
+"description": <string>
+}
+```
+description = name of the payment type.
+
+
+#### PUT
+using the URL  API/PaymentType/{id}  Where ID = the id number of the Order you are updating
+Sending a PUT request with the following object will update an EXISTING entry in the database.
+```
+{
+    "id": {id},
+    "description": <string>
+}
+```
+id = the int id of the order, this must match the id in the URL
+
+description = name of the payment type.
+
 
 
 ### DELETE
-The URL /api/Payment/{id} where {id} = the id number of the order, will remove the order from the database
+The URL /api/PaymentType/{id} where {id} = the id number of the order, will remove the order from the database
 

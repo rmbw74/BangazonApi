@@ -58,7 +58,7 @@ namespace BangazonApi.Controllers
             }
         }
 
-        // POST api/values
+        // POST api/paymenttype
         [HttpPost]
         public IActionResult Post([FromBody]PaymentType paymentType)
         {
@@ -87,7 +87,7 @@ namespace BangazonApi.Controllers
             return CreatedAtRoute("GetSinglePaymentType", new { id = paymentType.Id }, paymentType);
         }
 
-        // PUT api/values/5
+        // PUT api/paymenttype/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]PaymentType paymentType)
         {
@@ -120,7 +120,7 @@ namespace BangazonApi.Controllers
             return new StatusCodeResult(StatusCodes.Status204NoContent);
         }
 
-        // DELETE api/values/5
+        // DELETE api/paymenttype/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
