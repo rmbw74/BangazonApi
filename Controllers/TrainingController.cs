@@ -1,3 +1,5 @@
+ //Author: Kolden Prue 
+//Purpose: To allow Bangazonians to access the training table in the API, allowing them to GET, PUT, POST, and DELETE(only dates that are yet to come)
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -128,6 +130,8 @@ namespace BangazonApi.Controllers
       {
         return NotFound();
       }
+      //Here we are comparing the dates from training.Start to the current date to make sure a prior training program isn't deleted. The Compare() method and c# does this and returns a value of a negative, 0 , or above zero to base the comparison.
+      
       DateTime today = DateTime.Now;
       DateTime TrainingDate = training.Start;
       int comparison = DateTime.Compare(today, TrainingDate);
