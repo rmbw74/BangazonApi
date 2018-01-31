@@ -56,7 +56,7 @@ namespace BangazonApi.Controllers
             }
             catch (System.InvalidOperationException ex)
             {
-                return NotFound();
+                return NotFound(ex);
             }
         }
         //This method will post to the employee table when it is passed a valid JSON object
